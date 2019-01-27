@@ -1,0 +1,79 @@
+{
+    "title": "vaild case for courses: Query: transformation: SORT",
+    "query": {
+        "WHERE": {
+            "OR": [
+                {
+                    "AND": [
+                        {
+                            "GT": {
+                                "rooms_lat": 49.26125
+                            }
+                        },
+                        {
+                            "GT": {
+                                "rooms_lon": -123.24807
+                            }
+                        }
+                    ]
+                },
+                {
+                    "GT": {
+                        "rooms_seats": 500
+                    }
+                }
+            ]
+        },
+        "OPTIONS": {
+            "COLUMNS": [
+                "rooms_fullname",
+                "maxSeats"
+            ],
+            "ORDER": {
+                "dir": "DOWN",
+                "keys": [
+                    "maxSeats"
+                ]
+            }
+        },
+        "TRANSFORMATIONS": {
+            "GROUP": [
+                "rooms_fullname"
+            ],
+            "APPLY": [
+                {
+                    "maxSeats": {
+                        "MAX": "rooms_seats"
+                    }
+                }
+            ]
+        }
+    },
+    "isQueryValid": true,
+    "result": [
+        {
+            "rooms_fullname": "Woodward (Instructional Resources Centre-IRC)",
+            "maxSeats": 503
+        },
+        {
+            "rooms_fullname": "Life Sciences Centre",
+            "maxSeats": 350
+        },
+        {
+            "rooms_fullname": "Pharmaceutical Sciences Building",
+            "maxSeats": 236
+        },
+        {
+            "rooms_fullname": "Chemical and Biological Engineering Building",
+            "maxSeats": 200
+        },
+        {
+            "rooms_fullname": "Friedman Building",
+            "maxSeats": 160
+        },
+        {
+            "rooms_fullname": "War Memorial Gymnasium",
+            "maxSeats": 40
+        }
+    ]
+}
