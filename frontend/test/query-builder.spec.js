@@ -9,6 +9,7 @@ describe("buildQuery test suite", function() {
                     TTT.insertHtmlFixture(queryName);
                     let actualQuery = CampusExplorer.buildQuery(document);
                     let expectedQuery = queryFixtures[queryName];
+                    console.log(JSON.stringify(expectedQuery));
                     expect(actualQuery).to.equalQuery(expectedQuery);
                 });
             }

@@ -9,3 +9,16 @@
  */
 
 // TODO: implement!
+//1.) Click on submit button in the reference UI
+document.getElementById('submit-button').addEventListener('click',function(){
+//2.) Query object is extracted from UI using global document object (CampusExplorer.buildQuery)
+    let query = CampusExplorer.buildQuery();
+
+// 3.) Query object is sent to the POST /query endpoint using global XMLHttpRequest object (CampusExplorer.sendQuery)
+    CampusExplorer.sendQuery(query).then(function (response) {
+    //4.) Result is rendered
+        CampusExplorer.renderResult(JSON.parse(response));
+    }).catch(function(err){
+        console.log("Error message: " + err);
+    });
+});

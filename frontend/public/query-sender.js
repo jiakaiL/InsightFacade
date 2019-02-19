@@ -7,6 +7,30 @@
 CampusExplorer.sendQuery = function(query) {
     return new Promise(function(fulfill, reject) {
         // TODO: implement!
-        console.log("CampusExplorer.sendQuery not implemented yet.");
+        try {
+            let request = new XMLHttpRequest();
+            request.open("POST", "/query", true);
+
+            request.setRequestHeader("Content-Type", "application/JSON");
+
+            request.onload = function() {
+                let result = JSON.parse(request.responseText);
+                if (request.status === 200) {
+                    fulfill(result);
+                } else {
+                    reject(result);
+                }
+
+            };
+
+            request.onerror = function() {
+                reject("The request failed");
+            };
+
+            request.send(JSON.stringify(query));
+            // console.log("CampusExplorer.sendQuery not implemented yet.");
+        } catch (e) {
+            reject(e);
+        }
     });
 };
